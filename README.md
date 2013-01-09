@@ -2,7 +2,7 @@
 
 ![Demo application screenshot](https://raw.github.com/dbader/most-important-contacts-ios/master/screenshot.jpg)
 
-This repository contains code for an App Store-legal heuristic that guesses the most important contacts in a user's address book on iOS. Many iOS apps provide an "invite your friends" feature. From a usability design perspective it is desireable that the app suggests friends that are likely to be invited by the user.
+This repository contains code for an App Store-legal heuristic that guesses the favorite contacts in a user's address book on iOS. Many iOS apps provide an "invite your friends" feature. From a usability design perspective it is desireable that the app suggests friends that are likely to be invited by the user.
 
 The code is described in closer detail in this [blog post](http://dbader.org/blog/most-important-contacts-ios).
 
