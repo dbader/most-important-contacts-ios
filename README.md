@@ -1,4 +1,4 @@
-# [Determining a user's most important contacts on iOS](http://dbader.org/blog/most-important-contacts-ios)
+# [Guessing a user's most important contacts on iOS](http://dbader.org/blog/most-important-contacts-ios)
 
 ![Demo application screenshot](https://raw.github.com/dbader/most-important-contacts-ios/master/screenshot.jpg)
 
