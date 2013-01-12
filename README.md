@@ -1,4 +1,4 @@
-# [An App-Store legal way of guessing a user’s favorite contacts on iOS](http://dbader.org/blog/guessing-favorite-contacts-ios)
+# [Guessing a user’s favorite contacts on iOS](http://dbader.org/blog/guessing-favorite-contacts-ios)
 
 ![Demo application screenshot](https://raw.github.com/dbader/most-important-contacts-ios/master/screenshot.jpg)
 
