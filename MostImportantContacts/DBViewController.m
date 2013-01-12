@@ -100,7 +100,7 @@
     NSInteger score = [DBFriendInviter importanceScoreForContact:record];
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@", compositeName];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Score: %i", score];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Importance score: %i", score];
     
     return cell;
 }

@@ -22,7 +22,6 @@
 
 #import "DBFriendInviter.h"
 
-
 /**
  * A simple value object that stores a reference to an address book contact (an ABRecordID)
  * and the contact's associated importance score.
@@ -30,7 +29,7 @@
 @interface __DBContactScorePair : NSObject
 @property(readonly, nonatomic) ABRecordID contact;
 @property(readonly, nonatomic) NSInteger score;
-+ (__DBContactScorePair*) pairWithContact:(ABRecordID)aContact score:(NSInteger)aScore;
++ (__DBContactScorePair*) pairWithContact:(ABRecordID)contact score:(NSInteger)score;
 @end
 
 @implementation __DBContactScorePair
@@ -72,7 +71,7 @@
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &error);
     ABRecordRef record = ABAddressBookGetPersonWithRecordID(addressBook, self.contact);
     
-    NSString *compositeName = (__bridge_transfer NSString*) ABRecordCopyCompositeName(record);
+    NSString *compositeName = CFBridgingRelease(ABRecordCopyCompositeName(record));
     
     if (addressBook) {
         CFRelease(addressBook);
@@ -191,6 +190,7 @@ static NSArray *MULTIVALUE_PROPERTIES = nil;
     if (contactKind && contactKind != kABPersonKindPerson) {
         score -= NON_PERSON_PENALTY;
     }
+        
     if (contactKind) {
         CFRelease(contactKind);
     }
@@ -199,7 +199,7 @@ static NSArray *MULTIVALUE_PROPERTIES = nil;
     // Give score for all non-nil single-value properties
     // (e.g. first name, last name, ...).
     for (__DBPropertyScorePair *pair in SINGLEVALUE_PROPERTIES) {
-        NSString *value = (__bridge_transfer NSString*) ABRecordCopyValue(contact, pair.property);
+        NSString *value = CFBridgingRelease(ABRecordCopyValue(contact, pair.property));
         if (value) {
             score += pair.score;
         }
@@ -232,7 +232,7 @@ static NSArray *MULTIVALUE_PROPERTIES = nil;
     
     // Compute an importance score for all contacts in the address book
     // (except for those blacklisted by the `ignoredRecordIDs` set).
-    NSArray *allPeople = (__bridge_transfer NSArray*) ABAddressBookCopyArrayOfAllPeople(addressBook);
+    NSArray *allPeople = CFBridgingRelease(ABAddressBookCopyArrayOfAllPeople(addressBook));
     NSMutableArray *mostImportantContacts = [NSMutableArray arrayWithCapacity:[allPeople count]];
     for (NSInteger personIndex = 0; personIndex < allPeople.count; personIndex++) {
         ABRecordRef person = (__bridge ABRecordRef) [allPeople objectAtIndex:personIndex];
