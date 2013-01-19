@@ -26,7 +26,8 @@ NSMutableSet *blacklistedContacts = [NSMutableSet set];
 // ...
 [set addObject:@(recordID_N)];
 
-NSArray *contacts = [DBFriendInviter mostImportantContactsWithIgnoredRecordIDs:blacklistedContacts maxResults:20];
+NSArray *contacts = [DBFriendInviter mostImportantContactsWithIgnoredRecordIDs:blacklistedContacts
+                                                                    maxResults:20];
 ```
 
 ## Demo application
